@@ -1,0 +1,7 @@
+@import "./user";
+@import "./task";
+.main-block {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+}
