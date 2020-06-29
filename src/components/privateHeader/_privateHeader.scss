@@ -1,0 +1,11 @@
+.private-header-main {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background: aliceblue;
+    .private-header-main__link {
+        margin: 0;
+    }
+}

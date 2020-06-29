@@ -5,14 +5,16 @@ const myUserContext = createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "GET_REQUEST":
+      return { ...state, loading: true };
+
     case "FETCH_USER":
-      if (!action.payload) {
-        return { ...state, loading: true };
-      } else if (!!action.error) {
-        return { ...state, loading: false, error: action.error };
-      } else {
-        return { userInfo: action.payload, loading: false, error: false };
-      }
+      return { userInfo: action.payload, loading: false, error: false };
+
+    case "FETCH_ERROR":
+      console.log(action.error);
+      return { ...state, loading: false, error: action.error };
+
     default:
       break;
   }

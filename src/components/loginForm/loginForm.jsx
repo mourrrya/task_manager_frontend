@@ -1,7 +1,7 @@
 import { Button, Form } from "antd";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import postUserApi from "../../api/userApi";
+import { postUser } from "../../api/userApi";
 import { UserContext } from "../../store/userStore";
 import InputType from "../inputType";
 import "./_loginForm.scss";
@@ -32,7 +32,7 @@ export default function LoginForm() {
 
   const onSubmit = (value) => {
     console.log(value);
-    postUserApi("/user/login", value, dispatchUserData, history);
+    postUser("/user/login", value, dispatchUserData, history);
   };
   return (
     <Form

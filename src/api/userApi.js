@@ -1,7 +1,7 @@
 import axios from "axios";
-import { URL } from "../helper/constant";
+import { URL, userToken } from "../helper/constant";
 
-export default function postUserApi(link, payload, dispatch, history) {
+export function postUser(link, payload, dispatch, history) {
   axios
     .post(`${URL}${link}`, payload)
     .then((res) => {
@@ -16,6 +16,19 @@ export default function postUserApi(link, payload, dispatch, history) {
     })
     .catch((error) => {
       console.log(error.response);
-      dispatch({ type: "FETCH_USER", error: error.response });
+      dispatch({ type: "FETCH_ERROR", error: error.response });
+    });
+}
+
+export function getUser(link, dispatch) {
+  axios
+    .get(`${URL}${link}`, userToken())
+    .then((res) => {
+      !res && dispatch({ type: "GET_REQUEST" });
+      dispatch({ type: "FETCH_USER", payload: res.data });
+    })
+    .catch((error) => {
+      console.log(error.response);
+      dispatch({ type: "FETCH_ERROR", error: error.response });
     });
 }

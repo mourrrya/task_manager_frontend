@@ -1,7 +1,7 @@
 import { Button, Form } from "antd";
 import React, { useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
-import postUserApi from "../../api/userApi";
+import { postUser } from "../../api/userApi";
 import { UserContext } from "../../store/userStore";
 import InputType from "../inputType";
 import "./signUpForm.scss";
@@ -45,7 +45,7 @@ export default function SignUpForm() {
   });
   const onSubmit = (value) => {
     form.resetFields();
-    postUserApi("/user", value, dispatchUserData, history);
+    postUser("/user", value, dispatchUserData, history);
   };
 
   return (
