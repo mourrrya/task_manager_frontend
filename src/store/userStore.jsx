@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { useLocation } from "react-router-dom";
 
 const myUserContext = createContext();
 
@@ -12,7 +11,6 @@ const reducer = (state, action) => {
       return { userInfo: action.payload, loading: false, error: false };
 
     case "FETCH_ERROR":
-      console.log(action.error);
       return { ...state, loading: false, error: action.error };
 
     default:

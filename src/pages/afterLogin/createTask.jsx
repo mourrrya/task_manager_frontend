@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Button, Form } from "antd";
 import InputType from "../../components/inputType";
+import { postTask } from "../../api/taskApi";
+import { TaskContext } from "../../store/taskStore";
 
 const textInput = [
   {
@@ -24,14 +26,19 @@ const textInput = [
 ];
 
 export default function CreateTask() {
+  const [task, dispatchTask] = TaskContext();
+  const [form] = Form.useForm();
+
   const onFinish = (value) => {
-    console.log(value);
+    postTask(value, dispatchTask, form);
   };
+
   return (
     <div className="create-task-main">
       <h1 className="create-task-main__h1">Create Task</h1>
       <div className="create-task-data">
         <Form
+          form={form}
           name="textInputData"
           onFinish={onFinish}
           initialValues={{
@@ -46,7 +53,9 @@ export default function CreateTask() {
             );
           })}
           <Form.Item>
-            <Button htmlType="submit">Submit</Button>
+            <Button htmlType="submit" disabled={task.loading}>
+              Submit
+            </Button>
           </Form.Item>
         </Form>
       </div>

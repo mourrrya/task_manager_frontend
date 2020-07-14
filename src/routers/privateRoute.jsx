@@ -2,6 +2,8 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { UserProvider } from "../store/userStore";
+import { TaskProvider } from "../store/taskStore";
+
 import PrivateHeader from "../components/privateHeader/privateHeader";
 
 export default function PrivateRoute({ component: Component }, ...rest) {
@@ -16,7 +18,9 @@ export default function PrivateRoute({ component: Component }, ...rest) {
             component={(props) => {
               return (
                 <UserProvider>
-                  <Component {...props} />
+                  <TaskProvider>
+                    <Component {...props} />{" "}
+                  </TaskProvider>
                 </UserProvider>
               );
             }}

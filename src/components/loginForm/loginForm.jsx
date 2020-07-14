@@ -26,14 +26,11 @@ export default function LoginForm() {
   const [userData, dispatchUserData] = UserContext();
   const [form] = Form.useForm();
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-
   const onSubmit = (value) => {
     console.log(value);
     postUser("/user/login", value, dispatchUserData, history);
   };
+  
   return (
     <Form
       onFinish={onSubmit}

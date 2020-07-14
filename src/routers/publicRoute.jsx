@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function PublicRoute({ component: Component, ...rest }) {
   const token = sessionStorage.getItem("userToken");
+
   return (
     <>
       {!token ? (
@@ -13,7 +14,7 @@ export default function PublicRoute({ component: Component, ...rest }) {
           component={(props) => {
             return (
               <UserProvider>
-                <Component {...props} />
+                  <Component {...props} />
               </UserProvider>
             );
           }}
